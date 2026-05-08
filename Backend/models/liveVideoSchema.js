@@ -1,8 +1,17 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const liveVideoSchema = new mongoose.Schema({
   class: String,
   score: Number,
-  timestamp: { type: Date, default: Date.now },
+  timestamp: {
+    type: Date,
+    default: Date.now,
+  },
 });
-module.exports = mongoose.model("DetectedLiveVideoObject", liveVideoSchema);
+
+const DetectedLiveVideoObject = mongoose.model(
+  "DetectedLiveVideoObject",
+  liveVideoSchema
+);
+
+export default DetectedLiveVideoObject;

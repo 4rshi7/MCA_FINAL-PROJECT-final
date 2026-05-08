@@ -1,6 +1,7 @@
-const express = require("express");
+import express from "express";
+import DetectedLiveVideoObject from "../models/liveVideoSchema.js";
+
 const router = express.Router();
-const DetectedLiveVideoObject = require("../models/liveVideoSchema");
 
 // POST Route - Save detections
 router.post("/live-vdo-detect", async (req, res) => {
@@ -21,6 +22,7 @@ router.post("/live-vdo-detect", async (req, res) => {
     }));
 
     const savedData = await DetectedLiveVideoObject.insertMany(detections);
+
     res
       .status(201)
       .json({ message: "Data stored successfully", data: savedData });
@@ -48,4 +50,4 @@ router.get("/live-vdo-detections", async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const imageSchema = new mongoose.Schema({
   objectName: {
@@ -15,5 +15,9 @@ const imageSchema = new mongoose.Schema({
   },
 });
 
-const DetectedImageObject = mongoose.model("DetectedImageObject", imageSchema);
-module.exports = DetectedImageObject;
+const DetectedImageObject = mongoose.model(
+  "DetectedImageObject",
+  imageSchema
+);
+
+export default DetectedImageObject;

@@ -1,9 +1,11 @@
 // emailCooldown.js
+
 let lastEmailTime = 0;
 
-module.exports = {
-  getLastEmailTime: () => lastEmailTime,
-  updateLastEmailTime: (time) => {
-    lastEmailTime = time;
-  },
+const getLastEmailTime = () => lastEmailTime;
+
+const updateLastEmailTime = (time) => {
+  lastEmailTime = time;
 };
+
+export { getLastEmailTime, updateLastEmailTime };

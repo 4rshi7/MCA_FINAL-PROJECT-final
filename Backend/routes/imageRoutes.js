@@ -1,6 +1,7 @@
-const express = require("express");
+import express from "express";
+import DetectedImageObject from "../models/imageSchema.js";
+
 const router = express.Router();
-const DetectedImageObject = require("../models/imageSchema");
 
 // Save detected image objects
 router.post("/img-detect", async (req, res) => {
@@ -8,7 +9,9 @@ router.post("/img-detect", async (req, res) => {
     if (!Array.isArray(req.body) || req.body.length === 0) {
       return res.status(400).json({ error: "Invalid data format" });
     }
+
     await DetectedImageObject.insertMany(req.body);
+
     res.status(201).json({ message: "Image objects saved successfully" });
   } catch (error) {
     res.status(500).json({ error: "Error saving image objects" });
@@ -25,4 +28,4 @@ router.get("/img-detections", async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

@@ -1,8 +1,14 @@
-const express = require("express");
-const connectDB = require("./config/db");
-const cors = require("cors");
 
-require("dotenv").config({ path: "./config/.env" });
+import express from "express";
+import connectDB from "./config/db.js";
+import cors from "cors";
+import dotenv from "dotenv";
+dotenv.config({ path: "./config/.env" })
+// Routes
+import imageRoutes from "./routes/imageRoutes.js";
+import videoRoutes from "./routes/videoRoutes.js";
+import liveVideoRoutes from "./routes/liveVideoRoutes.js";
+import sendAlertRoutes from "./routes/sendAlert.js";
 
 const app = express();
 
@@ -13,12 +19,12 @@ app.use(cors());
 // Connect Database
 connectDB();
 
-// Routes
-app.use("/api", require("./routes/imageRoutes"));
-app.use("/api", require("./routes/videoRoutes"));
-app.use("/api", require("./routes/liveVideoRoutes"));
-app.use("/api", require("./routes/sendAlert"));
 
+
+app.use("/api", imageRoutes);
+app.use("/api", videoRoutes);
+app.use("/api", liveVideoRoutes);
+app.use("/api", sendAlertRoutes);
 // Start server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
